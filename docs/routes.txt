@@ -1,0 +1,10 @@
+GET /user
+# POST /user
+PATCH /user
+DELETE /user?soft
+
+# PUT /user/validation
+# POST /user/login
+PUT /user/image
+GET /user/password  -> Recovery
+PUT /user/password  -> Replace password using recovery token

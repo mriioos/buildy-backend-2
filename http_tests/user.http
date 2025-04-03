@@ -1,0 +1,119 @@
+### Signup
+POST http://localhost:3000/user
+Content-Type: application/json
+
+{
+    "email": "miguel12105marcos@gmail.com",
+    "password": "12345678"
+}
+
+### Validation
+PUT http://localhost:3000/user/validation
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjRmNWViNjRjODcxMzA5ODczMDAiLCJyb2xlIjoiZ3Vlc3QiLCJpYXQiOjE3NDMwNzA0NTMsImV4cCI6MTc0MzA3NzY1M30.mAEDO_EOLNHI5vcXVVHp7dAaVSkJpste4n0cIR3jQ54
+
+{
+    "code": "85a9e4"
+}
+
+### Login
+POST http://localhost:3000/user/login
+Content-Type: application/json
+
+{
+    "email": "miguel12105marcos@gmail.com",
+    "password": "12345678"
+}
+
+### Update user info
+PATCH http://localhost:3000/user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjM3NjQ4MSwiZXhwIjoxNzQyMzgzNjgxfQ.UGlRW2-CAjRLqpVkjAVphKQaqcLEs94-D0nBIXRK91g
+
+{
+    "name" : "John",
+    "lastname" : "Doe",
+    "nif" : "12345678Z"
+}
+
+### User company (Autónomo)
+PUT http://localhost:3000/user/company
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjM3NjQ4MSwiZXhwIjoxNzQyMzgzNjgxfQ.UGlRW2-CAjRLqpVkjAVphKQaqcLEs94-D0nBIXRK91g
+
+{
+    "company": false
+}
+
+### User company (No autónomo)
+PUT http://localhost:3000/user/company
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjM3NjQ4MSwiZXhwIjoxNzQyMzgzNjgxfQ.UGlRW2-CAjRLqpVkjAVphKQaqcLEs94-D0nBIXRK91g
+
+{
+    "company" : {
+        "name" : "Empresa test",
+        "cif" : "12345678Z",
+        "address" : {
+            "street" : "Calle test",
+            "number" : 1,
+            "postalCode" : 28001,
+            "city" : "Madrid",
+            "province" : "Madrid"
+        }
+    }
+}
+
+### User logo
+PUT http://localhost:3000/user/logo
+Content-Type: multipart/form-data; boundary=boundary
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjQ2NzU2NCwiZXhwIjoxNzQyNDc0NzY0fQ.dFSwVuziYPgAi51R495bX_iK1s02enabZ6qADXPpP9I
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="test_user_logo.png"
+Content-Type: image/png
+
+< ./test_user_logo.png
+--boundary--
+
+### Get user info
+GET http://localhost:3000/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjQ2NzU2NCwiZXhwIjoxNzQyNDc0NzY0fQ.dFSwVuziYPgAi51R495bX_iK1s02enabZ6qADXPpP9I
+
+### Delete user
+DELETE http://localhost:3000/user?soft=false
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjQ2NzU2NCwiZXhwIjoxNzQyNDc0NzY0fQ.dFSwVuziYPgAi51R495bX_iK1s02enabZ6qADXPpP9I
+
+### Soft delete user
+DELETE http://localhost:3000/user?soft=true
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjQ2NzU2NCwiZXhwIjoxNzQyNDc0NzY0fQ.dFSwVuziYPgAi51R495bX_iK1s02enabZ6qADXPpP9I
+
+### Generate recovery token
+POST http://localhost:3000/user/recovery
+Content-Type: application/json
+
+{
+    "email" : "miguel12105marcos@gmail.com"
+}
+
+### Update user password
+PUT http://localhost:3000/user/password
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0Mjk4MjIyNCwiZXhwIjoxNzQyOTg5NDI0fQ.p9K8Cpb8nFvWOGBlaACsel5iShh14ncH0itU14uz05s
+Content-Type: application/json
+
+{
+    "password" : "12345678"
+}
+
+### Add guest to the company
+POST http://localhost:3000/user/company/guest
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MzA3MDQzNSwiZXhwIjoxNzQzMDc3NjM1fQ.paLS2u5grUPGO4h1xUiernwzl8KRLdclgnWqBqgL0W4
+Content-Type: application/json
+
+{
+    "email": "jopetis28@gmail.com",
+    "password": "12345678",
+    "name" : "John",
+    "lastname" : "Doe",
+    "nif" : "12345678Z"
+}
