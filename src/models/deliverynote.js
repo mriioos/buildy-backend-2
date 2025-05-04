@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
 const deliveryNoteSchema = new mongoose.Schema({
-    proyect_id : {
+    project_id : {
         type : mongoose.Schema.Types.ObjectId,
-        ref : 'Proyect',
+        ref : 'Project',
         required : true
     },
     data : {
@@ -22,5 +22,19 @@ const deliveryNoteSchema = new mongoose.Schema({
                 required : true
             },
         }]
-    }
+    },
+    signature : {
+        type : String,
+        default : null,
+        required : false
+    },
+    deleted : { // deleted = true means Archived
+        type : Boolean,
+        default : false
+    },
+},
+{
+    timestamps : true
 });
+
+module.exports = mongoose.model('DeliveryNote', deliveryNoteSchema);

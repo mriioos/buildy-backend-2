@@ -34,4 +34,4 @@ const clientSchema = new mongoose.Schema({
 // Make client unique for the user
 clientSchema.index({ user_id : 1, email : 1 }, { unique: true });
 
-module.export = mongoose.model('Client', clientSchema);
+module.exports = mongoose.model('Client', clientSchema);

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const proyectSchema = new mongoose.Schema({
+const projectSchema = new mongoose.Schema({
     client_id : {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Client',
@@ -14,11 +14,15 @@ const proyectSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
+    deleted : { // deleted = true means Archived
+        type : Boolean,
+        default : false
+    },
 }, 
 {
     timestamps : true
 });
 
-proyectSchema.index({ client_id : 1, name : 1 }, { unique: true });
+projectSchema.index({ client_id : 1, name : 1 }, { unique: true });
 
-module.exports = mongoose.model('Proyect', proyectSchema);
+module.exports = mongoose.model('Project', projectSchema);
