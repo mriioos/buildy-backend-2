@@ -13,13 +13,13 @@ module.exports = authMiddleware = () => async (req, res, next) => {
         
         // If token is invalid
         if (!verified_token) {
-            res.status(401).json({ errors : ['Invalid token'] });
+            res.status(401).json({ errors : ['Unauthorized. Invalid token'] });
             return;
         }
 
         // If token is expired
         if (verified_token.expired) {
-            res.status(401).json({ errors : ['Token expired'] });
+            res.status(401).json({ errors : ['Unauthorized. Token expired'] });
             return;
         }
 
@@ -27,13 +27,13 @@ module.exports = authMiddleware = () => async (req, res, next) => {
         const [error, db_user] = await try_catch(User.findById(verified_token._id));
     
         if (error || !db_user) {
-            res.status(404).json({ errors : ['User not found'] });
+            res.status(403).json({ errors : ['Forbidden. User not found'] });
             return;
         }
     
         // Check if user is validated
         if (db_user.validated === false) {
-            res.status(403).json({ errors : ['User email not validated'] });
+            res.status(403).json({ errors : ['Forbidden. User email not validated'] });
             return;
         }
 
@@ -42,5 +42,5 @@ module.exports = authMiddleware = () => async (req, res, next) => {
         return;
     }
 
-    res.status(401).json({ errors : ['Token not found'] });
+    res.status(401).json({ errors : ['Unauthorized. Token not found'] });
 }

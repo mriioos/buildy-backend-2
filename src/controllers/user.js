@@ -6,7 +6,7 @@ const { sendEmail } = require('../utils/handleEmail');
 const ipfs = require('../utils/handleIPFS');
 
 // Post user
-module.exports.postUser = async (req, res) => {
+module.exports.postUser = async (req, res, next) => {
     
     const { email, password } = matchedData(req, { locations : ['body'] });
     
@@ -82,7 +82,7 @@ module.exports.postUser = async (req, res) => {
 };
 
 // Put user validation
-module.exports.putUserValidation = async (req, res) => {
+module.exports.putUserValidation = async (req, res, next) => {
     const { code, authorization : token } = matchedData(req);
 
     // Verify token
@@ -117,7 +117,7 @@ module.exports.putUserValidation = async (req, res) => {
         // If validation attempts are 0, delete user
         if (db_user.validation_attempts <= 0) {
 
-            const [delete_error, _] = await try_catch(db_user.delete());
+            const [delete_error, _] = await try_catch(db_user.deleteOne());
             if (delete_error) {
                 res.status(500).json({ errors : ['Error deleting user'] });
                 return;
@@ -144,7 +144,7 @@ module.exports.putUserValidation = async (req, res) => {
 };
 
 // Post user login
-module.exports.postUserLogin = async (req, res) => {
+module.exports.postUserLogin = async (req, res, next) => {
     const { email, password } = matchedData(req, { locations : ['body'] });
 
     // Check if user exists
@@ -176,7 +176,7 @@ module.exports.postUserLogin = async (req, res) => {
 };
 
 // Patch user
-module.exports.patchUser = async (req, res) => {
+module.exports.patchUser = async (req, res, next) => {
 
     const user_data = matchedData(req, { locations : ['body'] });
 
@@ -199,7 +199,7 @@ module.exports.patchUser = async (req, res) => {
 
 
 // Put user company
-module.exports.putUserCompany = async (req, res) => {
+module.exports.putUserCompany = async (req, res, next) => {
 
     const { company } = matchedData(req, { locations : ['body'] });
 
@@ -213,7 +213,7 @@ module.exports.putUserCompany = async (req, res) => {
     const [error, updated_user] = await try_catch(req.user.save());
 
     if (error || !updated_user) {
-        res.status(500).json({ errors : ['Error uploadating user company'] });
+        res.status(500).json({ errors : ['Error updating user company'] });
         return;
     }
 
@@ -221,7 +221,7 @@ module.exports.putUserCompany = async (req, res) => {
 };
 
 // Put user logo
-module.exports.putUserLogo = async (req, res) => {
+module.exports.putUserLogo = async (req, res, next) => {
 
     const { file } = req;
 
@@ -253,27 +253,25 @@ module.exports.putUserLogo = async (req, res) => {
 
 
 // Retrieve user by JWT
-module.exports.getUser = async (req, res) => {
+module.exports.getUser = async (req, res, next) => {
 
     // Return user data (only public data)
     res.status(200).json({
-        user : {
-            _id : req.user._id,
-            email : req.user.email,
-            validated : req.user.validated,
-            role : req.user.role,
-            name : req.user.name,
-            lastname : req.user.lastname,
-            nif : req.user.nif,
-            company : req.user.company,
-            logo : req.user.logo,
-        }
+        _id : req.user._id,
+        email : req.user.email,
+        validated : req.user.validated,
+        role : req.user.role,
+        name : req.user.name,
+        lastname : req.user.lastname,
+        nif : req.user.nif,
+        company : req.user.company,
+        logo : req.user.logo,
     });
 };
 
 
 // Delete user (soft?)
-module.exports.deleteUser = async (req, res) => {
+module.exports.deleteUser = async (req, res, next) => {
 
     const { soft } = matchedData(req, { locations : ['query'] });
 
@@ -287,7 +285,7 @@ module.exports.deleteUser = async (req, res) => {
         }
     }
     else {
-        const [error, deleted_user] = await try_catch(req.user.delete());
+        const [error, deleted_user] = await try_catch(req.user.deleteOne());
         if (error || !deleted_user) {
             res.status(500).json({ errors : ['Error deleting user'] });
             return;
@@ -298,7 +296,7 @@ module.exports.deleteUser = async (req, res) => {
 };
 
 // Post user recovery
-module.exports.postUserRecovery = async (req, res) => {
+module.exports.postUserRecovery = async (req, res, next) => {
     const { email } = matchedData(req, { locations : ['body'] });
 
     // Check if user exists
@@ -312,7 +310,9 @@ module.exports.postUserRecovery = async (req, res) => {
     // Generate new login token (So the user can use it to change the password)
     const token = security.tokenSign(db_user);
 
-    // Send validation email
+    res.status(200).json({ message : 'Password recovery email sent successfully' });
+
+    // Send validation email (Dont wait for it to prevent user indexation attacks)
     sendEmail({
         from : process.env.GMAIL_USER,
         to : email,
@@ -322,11 +322,11 @@ module.exports.postUserRecovery = async (req, res) => {
     .then(() => {
         console.log(`Token enviado por mail: ${token}`);
     })
-    .catch(console.error);  
+    .catch(console.error);
 };
 
 // Put user password
-module.exports.putUserPassword = async (req, res) => {
+module.exports.putUserPassword = async (req, res, next) => {
     const { password } = matchedData(req, { locations : ['body'] });
 
     // If token is invalid
@@ -352,7 +352,7 @@ module.exports.putUserPassword = async (req, res) => {
 }
 
 // Add new guest to company
-module.exports.postUserCompanyGuest = async (req, res) => {
+module.exports.postUserCompanyGuest = async (req, res, next) => {
 
     const { email, password, name, lastname, nif } = matchedData(req, { locations : ['body'] });
     
@@ -369,7 +369,6 @@ module.exports.postUserCompanyGuest = async (req, res) => {
         res.status(500).json({ errors : ['Error checking user', find_existing_user_error] });
         return;
     }
-
 
     // Save user to database
     const user = new User({ 
