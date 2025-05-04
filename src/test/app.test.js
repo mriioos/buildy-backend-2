@@ -33,14 +33,14 @@ beforeAll(async () => {
 });
 
 it('Should try the test endpoint', async () => {
-    await api.get('/test')
+    await api.get('/api/test')
     .expect(200)
     .expect('Content-Type', 'text/html; charset=utf-8');
 });
 
 describe('Users' , () => {
     it('should get user data', async () => {
-        await api.get('/user')
+        await api.get('/api/user')
         .auth(token, { type: 'bearer' })
         .expect(200)
         .expect('Content-Type', /application\/json/);
