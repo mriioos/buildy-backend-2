@@ -22,6 +22,9 @@ module.exports.postUserLogin = [
 ];
 
 module.exports.patchUser = [
+    header('authorization').trim()
+    .customSanitizer(value => value.startsWith('Bearer ') ? value.replace(/^Bearer\s/, '') : value)
+    .isJWT(),
     body('name').optional().trim().isString(),
     body('lastname').optional().trim().isString(),
     body('nif').optional().trim().isString(),
@@ -29,6 +32,9 @@ module.exports.patchUser = [
 ];
 
 module.exports.putUserCompany = [
+    header('authorization').trim()
+    .customSanitizer(value => value.startsWith('Bearer ') ? value.replace(/^Bearer\s/, '') : value)
+    .isJWT(),
     body('company').custom(value => {
 
         // Check if the user is self-employed
@@ -63,14 +69,23 @@ module.exports.putUserCompany = [
 ];
 
 module.exports.putUserLogo = [
+    header('authorization').trim()
+    .customSanitizer(value => value.startsWith('Bearer ') ? value.replace(/^Bearer\s/, '') : value)
+    .isJWT(),
     validateResults
 ];
 
 module.exports.getUser = [
+    header('authorization').trim()
+    .customSanitizer(value => value.startsWith('Bearer ') ? value.replace(/^Bearer\s/, '') : value)
+    .isJWT(),
     validateResults
 ];
 
 module.exports.deleteUser = [
+    header('authorization').trim()
+    .customSanitizer(value => value.startsWith('Bearer ') ? value.replace(/^Bearer\s/, '') : value)
+    .isJWT(),
     query('soft').optional().default(true).isBoolean().withMessage("'soft' query param must be a boolean"),
     validateResults
 ];
@@ -81,11 +96,17 @@ module.exports.postUserRecovery = [
 ];
 
 module.exports.putUserPassword = [
+    header('authorization').trim()
+    .customSanitizer(value => value.startsWith('Bearer ') ? value.replace(/^Bearer\s/, '') : value)
+    .isJWT(),
     body('password').isLength({ min : 8 }),
     validateResults
 ];
 
 module.exports.postUserCompanyGuest = [
+    header('authorization').trim()
+    .customSanitizer(value => value.startsWith('Bearer ') ? value.replace(/^Bearer\s/, '') : value)
+    .isJWT(),
     body('email').trim().isEmail(),
     body('password').isLength({ min : 8 }),
     body('name').optional().trim().isString(),

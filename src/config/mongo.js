@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 const dbConnect = () => {
 
-    console.log("Conectando. . .")
+    console.log("Conectando a mongo. . .")
 
     const db_uri = process.env.NODE_ENV === 'test' ? process.env.MONGO_URI_TEST : process.env.MONGO_URI;
     mongoose.set('strictQuery', false);
