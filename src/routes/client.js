@@ -6,48 +6,6 @@ const controllers = require('../controllers/client');
 
 /**
  * @swagger
- * /api/v1/client/{id}:
- *   get:
- *     summary: Get a client by ID or all clients if no ID is provided
- *     tags: [Client]
- *     parameters:
- *       - name: id
- *         in: path
- *         required: false
- *         description: ID of the client to retrieve. If not provided, all clients will be returned.
- *         schema:
- *           type: string
- *           example: 1234567890abcdef12345678
- *     responses:
- *       200:
- *         description: Client retrieved successfully
- *         content:
- *           application/json:
- *             schema: 
- *               oneOf:
- *                 - $ref: '#/components/schemas/client' # When 'id' is set, return a single client
- *                 - type: array
- *                   items:
- *                     $ref: '#/components/schemas/client' # When 'id' is not set, return an array of clients
- *       400: 
- *         $ref: '#/components/responses/BadRequestError'
- *       401:
- *         $ref: '#/components/responses/UnauthorizedError'
- *       403:
- *         $ref: '#/components/responses/ForbiddenError'
- *       404:
- *         description: Client not found
- *         content: 
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/error'
- *       500:
- *         $ref: '#/components/responses/InternalServerError'
- */
-router.get('/:id', authMiddleware(), validators.getClient, controllers.getClient);
-
-/**
- * @swagger
  * /api/v1/client/:
  *   post:
  *     summary: Post a new client for a user
@@ -247,6 +205,48 @@ router.delete('/:id', authMiddleware(), validators.deleteClient, controllers.del
  *         $ref: '#/components/responses/InternalServerError'
  */
 router.get('/archived', authMiddleware(), validators.getClientArchive, controllers.getClientArchive);
+
+/**
+ * @swagger
+ * /api/v1/client/{id}:
+ *   get:
+ *     summary: Get a client by ID or all clients if no ID is provided
+ *     tags: [Client]
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         required: false
+ *         description: ID of the client to retrieve. If not provided, all clients will be returned.
+ *         schema:
+ *           type: string
+ *           example: 1234567890abcdef12345678
+ *     responses:
+ *       200:
+ *         description: Client retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema: 
+ *               oneOf:
+ *                 - $ref: '#/components/schemas/client' # When 'id' is set, return a single client
+ *                 - type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/client' # When 'id' is not set, return an array of clients
+ *       400: 
+ *         $ref: '#/components/responses/BadRequestError'
+ *       401:
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       403:
+ *         $ref: '#/components/responses/ForbiddenError'
+ *       404:
+ *         description: Client not found
+ *         content: 
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/error'
+ *       500:
+ *         $ref: '#/components/responses/InternalServerError'
+ */
+router.get('/:id?', authMiddleware(), validators.getClient, controllers.getClient);
 
 /**
  * @swagger 

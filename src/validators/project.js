@@ -43,7 +43,7 @@ module.exports.deleteProject = [
     .customSanitizer(value => value.startsWith('Bearer ') ? value.replace(/^Bearer\s/, '') : value)
     .isJWT(),
     param('id').notEmpty().isMongoId().withMessage('id is required'),
-    query('soft').optional().default(true).isBoolean().withMessage("'soft' query param must be a boolean"),
+    query('soft').optional().default(true).isBoolean().withMessage("'soft' query param must be a boolean").toBoolean(),
     validateResults
 ];
 

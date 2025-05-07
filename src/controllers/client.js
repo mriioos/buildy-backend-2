@@ -6,7 +6,7 @@ const Client = require('../models/client');
 module.exports.getClient = async (req, res, next) => {
 
     // Get validated client id
-    const { id } = matchedData(req, { locations : ['body'] });
+    const { id } = matchedData(req, { locations : ['params'] });
 
     // If no id is provided, find all clients for that user
     if(!id){

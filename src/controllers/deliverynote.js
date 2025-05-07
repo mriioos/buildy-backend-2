@@ -424,7 +424,7 @@ module.exports.getDeliveryNotePDF = async (req, res, next) => {
         res.status(404).json({ errors : [`Not Found. Delivery note with id '${id}' not found`] }) // Only notify that the delivery note was not found to not leak information about the client
         return;
     }
-
+    
     // Create the PDF document of the delivery note
     const [create_doc_error, doc] = await try_catch(
         deliveryNoteToPDF(delivery_note, project, client)
@@ -471,7 +471,14 @@ const deliveryNoteToPDF = async (delivery_note, project, client) => {
 
         // Download image to a buffer
         const response = await fetch(delivery_note.signature);
-        const buffer = await response.buffer();
+
+        if(!response.ok){
+            const error = new Error('Internal Server Error. Try again later');
+            error.status = 500;
+            throw error;
+        }
+
+        const buffer = await response.arrayBuffer();
 
         // Add image to PDF
         doc.image(buffer, {
@@ -565,6 +572,8 @@ module.exports.putDeliveryNoteSignature = async (req, res, next) => {
         return;
     }
     
+    console.log('Llega 4');
+    
     // Update the delivery note with the signature url and handle erros
     delivery_note.signature = `https://${process.env.PINATA_GATEWAY}/ipfs/${signature.IpfsHash}`;
     const [update_delivery_note_error, updated_delivery_note] = await try_catch(delivery_note.save());
@@ -575,6 +584,8 @@ module.exports.putDeliveryNoteSignature = async (req, res, next) => {
         next(error);
         return;
     }
+    
+    console.log('Llega 5');
 
     // Map delivery note data to new object (Whitelist fields)
     res.status(200).json({
@@ -654,7 +665,7 @@ module.exports.deleteDeliveryNote = async (req, res, next) => {
     }
 
     // If already signed, respond with a conflict error
-    if(delivery_note.signed !== ''){
+    if(delivery_note.signature !== '' && delivery_note.signature != null){
         res.status(409).json({ errors : [`Conflict. Delivery note with id '${id}' already signed`] });
         return;
     }

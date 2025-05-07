@@ -85,5 +85,5 @@ module.exports.deleteDeliveryNote = [
     .isJWT(),
     param('id').notEmpty().isMongoId().withMessage('Valid id is required'),
     validateResults,
-    query('soft').optional().default(true).isBoolean().withMessage("'soft' query param must be a boolean"),
+    query('soft').optional().default(true).isBoolean().withMessage("'soft' query param must be a boolean").toBoolean(),
 ];

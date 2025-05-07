@@ -43,7 +43,7 @@ morganBody(app, {
 app.use((err, req, res, next) => {
 
     // Upload error to Slack
-    //loggerStream.write(err.message);
+    loggerStream.write(err.message);
 
     // Select error message based on status code
     res.status(err.status || 500)

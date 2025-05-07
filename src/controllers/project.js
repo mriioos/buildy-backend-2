@@ -64,6 +64,11 @@ module.exports.getProject = async (req, res) => {
         return;
     }
 
+    if(!project){
+        res.status(404).json({ errors : [`Not Found. Project with id '${id}' not found for this user`] });
+        return;
+    }
+
     // Check if the client owner of the project is a client of the user
     const [find_client_error, client] = await try_catch(
         Client.findOne({ _id : project.client_id, user_id : req.user._id, deleted : false })
@@ -374,7 +379,7 @@ module.exports.deleteProject = async (req, res) => {
         return;
     }
 
-    res.status(200).json({ message : 'OK' });
+    res.status(200).json({ message : 'OK. This action cannot be undone' });
 }
 
 // Get archived projects of the user

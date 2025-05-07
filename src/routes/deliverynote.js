@@ -60,7 +60,7 @@ const upload = multer({
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
  */
-router.get('/:id', authMiddleware(), validators.getDeliveryNote, controllers.getDeliveryNote);
+router.get('/:id?', authMiddleware(), validators.getDeliveryNote, controllers.getDeliveryNote);
 
 /**
  * @swagger
@@ -322,7 +322,13 @@ router.get('/pdf/:id', authMiddleware(), validators.getDeliveryNotePDF, controll
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
  */
-router.put('/signature/:id', authMiddleware(), upload.single('file'), validators.putDeliveryNoteSignature, controllers.putDeliveryNoteSignature);
+router.put(
+    '/signature/:id', 
+    authMiddleware(), 
+    upload.single('file'), 
+    (err, req, res, next) => err ? res.status(400).json({ errors : [err.message] }) : next(),
+    validators.putDeliveryNoteSignature, controllers.putDeliveryNoteSignature
+);
 
 /**
  * @swagger

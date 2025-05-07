@@ -44,7 +44,7 @@ const controllers = require('../controllers/project');
  *       500:
  *         $ref: '#/components/responses/InternalServerError'
  */
-router.get('/:id', authMiddleware(), validators.getProject, controllers.getProject);
+router.get('/:id?', authMiddleware(), validators.getProject, controllers.getProject);
 
 /**
  * @swagger
