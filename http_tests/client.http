@@ -1,0 +1,52 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjYyNzU3NSwiZXhwIjoxNzQ2NjM0Nzc1fQ.S-8YWUpKZNrUS6my1xWprn5nWahe8Y27BIJvbQ63NeE
+@client_id = 681b70c6d4c30ad9cea221e5
+@user_id = 67da8da48ddc257ed7a8360b
+
+### GET client by ID (or all clients with no ID)
+GET http://localhost:3000/api/client/
+Authorization: Bearer {{token}}
+
+###
+
+### POST create a new client
+POST http://localhost:3000/api/client
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "user_id" : "{{user_id}}",
+    "email" : "riosmarcosmiguel@gmail.com",
+    "name" : "Miguel",
+    "lastname" : "Rios",
+    "address" : "C/ Ejemplo 123",
+    "deleted" : false
+}
+
+###
+
+### PATCH update a client
+PATCH http://localhost:3000/api/client/{{client_id}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name" : "John"
+}
+
+###
+
+### DELETE (archive?) a client
+DELETE http://localhost:3000/api/client/{{client_id}}?soft=true
+Authorization: Bearer {{token}}
+
+###
+
+### GET archived clients
+GET http://localhost:3000/api/client/archived
+Authorization: Bearer {{token}}
+
+###
+
+### PUT restore an archived client
+PUT http://localhost:3000/api/client/{{client_id}}/restore
+Authorization: Bearer {{token}}

@@ -1,0 +1,56 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjYyNzU3NSwiZXhwIjoxNzQ2NjM0Nzc1fQ.S-8YWUpKZNrUS6my1xWprn5nWahe8Y27BIJvbQ63NeE
+@project_id = 681b80e8e6e8c7fa84cd6f19
+@client_id = 681b70c6d4c30ad9cea221e5
+
+### GET project by ID
+GET http://localhost:3000/api/project/{{project_id}}
+Authorization: Bearer {{token}}
+
+###
+
+### GET projects by client ID
+GET http://localhost:3000/api/project/client/{{client_id}}
+Authorization: Bearer {{token}}
+
+###
+
+### POST create a new project
+POST http://localhost:3000/api/project
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "client_id" : "{{client_id}}",
+    "name" : "New Test Project",
+    "description" : "Testing POST route",
+    "deleted" : false
+}
+
+###
+
+### PATCH update a project
+PATCH http://localhost:3000/api/project/{{project_id}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name" : "Updated Project Name"
+}
+
+###
+
+### DELETE (archive) a project
+DELETE http://localhost:3000/api/project/{{project_id}}?soft=false
+Authorization: Bearer {{token}}
+
+###
+
+### GET archived projects for a client
+GET http://localhost:3000/api/project/archive/{{client_id}}
+Authorization: Bearer {{token}}
+
+###
+
+### PUT restore an archived project
+PUT http://localhost:3000/api/project/{{project_id}}/restore
+Authorization: Bearer {{token}}

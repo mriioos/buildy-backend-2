@@ -1,5 +1,5 @@
 ### Signup
-POST http://localhost:3000/user
+POST http://localhost:3000/api/user
 Content-Type: application/json
 
 {
@@ -8,7 +8,7 @@ Content-Type: application/json
 }
 
 ### Validation
-PUT http://localhost:3000/user/validation
+PUT http://localhost:3000/api/user/validation
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjRmNWViNjRjODcxMzA5ODczMDAiLCJyb2xlIjoiZ3Vlc3QiLCJpYXQiOjE3NDMwNzA0NTMsImV4cCI6MTc0MzA3NzY1M30.mAEDO_EOLNHI5vcXVVHp7dAaVSkJpste4n0cIR3jQ54
 
@@ -17,7 +17,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjRmN
 }
 
 ### Login
-POST http://localhost:3000/user/login
+POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
@@ -26,7 +26,7 @@ Content-Type: application/json
 }
 
 ### Update user info
-PATCH http://localhost:3000/user
+PATCH http://localhost:3000/api/user
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjM3NjQ4MSwiZXhwIjoxNzQyMzgzNjgxfQ.UGlRW2-CAjRLqpVkjAVphKQaqcLEs94-D0nBIXRK91g
 
@@ -37,7 +37,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhN
 }
 
 ### User company (Autónomo)
-PUT http://localhost:3000/user/company
+PUT http://localhost:3000/api/user/company
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjM3NjQ4MSwiZXhwIjoxNzQyMzgzNjgxfQ.UGlRW2-CAjRLqpVkjAVphKQaqcLEs94-D0nBIXRK91g
 
@@ -46,7 +46,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhN
 }
 
 ### User company (No autónomo)
-PUT http://localhost:3000/user/company
+PUT http://localhost:3000/api/user/company
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjM3NjQ4MSwiZXhwIjoxNzQyMzgzNjgxfQ.UGlRW2-CAjRLqpVkjAVphKQaqcLEs94-D0nBIXRK91g
 
@@ -65,7 +65,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhN
 }
 
 ### User logo
-PUT http://localhost:3000/user/logo
+PUT http://localhost:3000/api/user/logo
 Content-Type: multipart/form-data; boundary=boundary
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjQ2NzU2NCwiZXhwIjoxNzQyNDc0NzY0fQ.dFSwVuziYPgAi51R495bX_iK1s02enabZ6qADXPpP9I
 
@@ -77,19 +77,19 @@ Content-Type: image/png
 --boundary--
 
 ### Get user info
-GET http://localhost:3000/user
+GET http://localhost:3000/api/user
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjQ2NzU2NCwiZXhwIjoxNzQyNDc0NzY0fQ.dFSwVuziYPgAi51R495bX_iK1s02enabZ6qADXPpP9I
 
 ### Delete user
-DELETE http://localhost:3000/user?soft=false
+DELETE http://localhost:3000/api/user?soft=false
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjQ2NzU2NCwiZXhwIjoxNzQyNDc0NzY0fQ.dFSwVuziYPgAi51R495bX_iK1s02enabZ6qADXPpP9I
 
 ### Soft delete user
-DELETE http://localhost:3000/user?soft=true
+DELETE http://localhost:3000/api/user?soft=true
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjQ2NzU2NCwiZXhwIjoxNzQyNDc0NzY0fQ.dFSwVuziYPgAi51R495bX_iK1s02enabZ6qADXPpP9I
 
 ### Generate recovery token
-POST http://localhost:3000/user/recovery
+POST http://localhost:3000/api/user/recovery
 Content-Type: application/json
 
 {
@@ -97,7 +97,7 @@ Content-Type: application/json
 }
 
 ### Update user password
-PUT http://localhost:3000/user/password
+PUT http://localhost:3000/api/user/password
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0Mjk4MjIyNCwiZXhwIjoxNzQyOTg5NDI0fQ.p9K8Cpb8nFvWOGBlaACsel5iShh14ncH0itU14uz05s
 Content-Type: application/json
 
@@ -106,7 +106,7 @@ Content-Type: application/json
 }
 
 ### Add guest to the company
-POST http://localhost:3000/user/company/guest
+POST http://localhost:3000/api/user/company/guest
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MzA3MDQzNSwiZXhwIjoxNzQzMDc3NjM1fQ.paLS2u5grUPGO4h1xUiernwzl8KRLdclgnWqBqgL0W4
 Content-Type: application/json
 

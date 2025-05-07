@@ -1,0 +1,66 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjYzNDg3MywiZXhwIjoxNzQ2NjQyMDczfQ.lN41XZGnjQOUuVeGxvkvhTFV3rMWlt7Inv-dfFU53Ow
+@deliverynote_id = 681b8989d0572cb1e2283797
+@project_id = 681b80e8e6e8c7fa84cd6f19
+@client_id = 681b70c6d4c30ad9cea221e5
+
+### GET delivery note by ID
+GET http://localhost:3000/api/deliverynote/{{deliverynote_id}}
+Authorization: Bearer {{token}}
+
+###
+
+### POST create a new delivery note
+POST http://localhost:3000/api/deliverynote
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "project_id" : "{{project_id}}",
+    "data" : [
+        {
+            "type" : "material",
+            "name" : "Cement",
+            "quantity" : 10
+        }
+    ],
+    "signature" : null,
+    "deleted" : false
+}
+
+###
+
+### GET delivery notes by client ID
+GET http://localhost:3000/api/deliverynote/client/{{client_id}}
+Authorization: Bearer {{token}}
+
+###
+
+### GET delivery notes by project ID
+GET http://localhost:3000/api/deliverynote/project/{{project_id}}
+Authorization: Bearer {{token}}
+
+###
+
+### GET delivery note PDF by ID
+GET http://localhost:3000/api/deliverynote/pdf/{{deliverynote_id}}
+Authorization: Bearer {{token}}
+
+###
+
+### PUT upload signature to delivery note
+PUT http://localhost:3000/api/deliverynote/signature/{{deliverynote_id}}
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="signature.png"
+Content-Type: image/png
+
+< ./multimedia/signature.png
+--boundary--
+
+###
+
+### DELETE (archive) a delivery note
+DELETE http://localhost:3000/api/deliverynote/{{deliverynote_id}}?soft=false
+Authorization: Bearer {{token}}
