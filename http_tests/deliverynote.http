@@ -1,10 +1,12 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjYzNDg3MywiZXhwIjoxNzQ2NjQyMDczfQ.lN41XZGnjQOUuVeGxvkvhTFV3rMWlt7Inv-dfFU53Ow
-@deliverynote_id = 681b8989d0572cb1e2283797
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjY5NTE5NSwiZXhwIjoxNzQ2NzAyMzk1fQ.AItk9hacrfLwYS-vNg0inOUa4C5enMpZsq5k54QYG_0
+@token_2 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFjNzRlOGE3MzdiZGQ1NGE4NGE2NmEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjY5NTU4NiwiZXhwIjoxNzQ2NzAyNzg2fQ.YTSfxoq_g7Pf1L21cdE8Aj06sDYW3Y1yr5m0QsU3vAY
+
+@deliverynote_id = 681c7786a737bdd54a84a6a6
 @project_id = 681b80e8e6e8c7fa84cd6f19
-@client_id = 681b70c6d4c30ad9cea221e5
+@client_id = 681c74b4a737bdd54a84a663
 
 ### GET delivery note by ID
-GET http://localhost:3000/api/deliverynote/{{deliverynote_id}}
+GET http://localhost:3000/api/deliverynote/
 Authorization: Bearer {{token}}
 
 ###
@@ -19,8 +21,13 @@ Authorization: Bearer {{token}}
     "data" : [
         {
             "type" : "material",
-            "name" : "Cement",
+            "name" : "Bricks",
             "quantity" : 10
+        },
+        {
+            "type" : "person",
+            "name" : "John Doe",
+            "quantity" : 2
         }
     ],
     "signature" : null,

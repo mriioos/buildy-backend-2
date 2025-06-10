@@ -92,7 +92,7 @@ describe('Project routes', () => {
     Como referencia, el router de este ednpoint es el siguiente:
     router.get('/archived', (req, res, next) => { console.log('llega'); next(); }, authMiddleware(), validators.getProjectArchive, controllers.getProjectArchive);
     No llega a imprimir 'llega' en la consola, pero, sin embargo, si quito la ruta, entonces devuelve 404, por lo que no entiendo por qué no funciona. 
-    
+
     it('GET /api/project/archived - should return archived projects', async () => {
         await api.get('/api/project/archived')
         .set('authorization', `Bearer ${token}`)

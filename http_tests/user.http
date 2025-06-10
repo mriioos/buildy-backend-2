@@ -3,17 +3,17 @@ POST http://localhost:3000/api/user
 Content-Type: application/json
 
 {
-    "email": "miguel12105marcos@gmail.com",
+    "email": "riosmarcosmiguel@gmail.com",
     "password": "12345678"
 }
 
 ### Validation
 PUT http://localhost:3000/api/user/validation
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2U1MjRmNWViNjRjODcxMzA5ODczMDAiLCJyb2xlIjoiZ3Vlc3QiLCJpYXQiOjE3NDMwNzA0NTMsImV4cCI6MTc0MzA3NzY1M30.mAEDO_EOLNHI5vcXVVHp7dAaVSkJpste4n0cIR3jQ54
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFjNzRlOGE3MzdiZGQ1NGE4NGE2NmEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjY5NTQwMCwiZXhwIjoxNzQ2NzAyNjAwfQ.HMWwjLkOmBco4Emyz-Q6vtklkd4wS7iTH67ocpti258
 
 {
-    "code": "85a9e4"
+    "code": "25d29c"
 }
 
 ### Login
@@ -21,7 +21,7 @@ POST http://localhost:3000/api/user/login
 Content-Type: application/json
 
 {
-    "email": "miguel12105marcos@gmail.com",
+    "email": "riosmarcosmiguel@gmail.com",
     "password": "12345678"
 }
 
@@ -78,7 +78,7 @@ Content-Type: image/png
 
 ### Get user info
 GET http://localhost:3000/api/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0MjQ2NzU2NCwiZXhwIjoxNzQyNDc0NzY0fQ.dFSwVuziYPgAi51R495bX_iK1s02enabZ6qADXPpP9I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjY5NTE5NSwiZXhwIjoxNzQ2NzAyMzk1fQ.AItk9hacrfLwYS-vNg0inOUa4C5enMpZsq5k54QYG_0
 
 ### Delete user
 DELETE http://localhost:3000/api/user?soft=false

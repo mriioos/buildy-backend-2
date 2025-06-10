@@ -1,5 +1,7 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjYyNzU3NSwiZXhwIjoxNzQ2NjM0Nzc1fQ.S-8YWUpKZNrUS6my1xWprn5nWahe8Y27BIJvbQ63NeE
-@client_id = 681b70c6d4c30ad9cea221e5
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjY5NTE5NSwiZXhwIjoxNzQ2NzAyMzk1fQ.AItk9hacrfLwYS-vNg0inOUa4C5enMpZsq5k54QYG_0
+@token_2 = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODFjNzRlOGE3MzdiZGQ1NGE4NGE2NmEiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjY5NTU4NiwiZXhwIjoxNzQ2NzAyNzg2fQ.YTSfxoq_g7Pf1L21cdE8Aj06sDYW3Y1yr5m0QsU3vAY
+
+@client_id = 681c74b4a737bdd54a84a663
 @user_id = 67da8da48ddc257ed7a8360b
 
 ### GET client by ID (or all clients with no ID)
@@ -15,7 +17,7 @@ Authorization: Bearer {{token}}
 
 {
     "user_id" : "{{user_id}}",
-    "email" : "riosmarcosmiguel@gmail.com",
+    "email" : "miguel@gmail.com",
     "name" : "Miguel",
     "lastname" : "Rios",
     "address" : "C/ Ejemplo 123",

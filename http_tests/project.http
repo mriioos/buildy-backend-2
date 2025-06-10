@@ -1,6 +1,6 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjYyNzU3NSwiZXhwIjoxNzQ2NjM0Nzc1fQ.S-8YWUpKZNrUS6my1xWprn5nWahe8Y27BIJvbQ63NeE
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RhOGRhNDhkZGMyNTdlZDdhODM2MGIiLCJyb2xlIjoidXNlciIsImlhdCI6MTc0NjY5NTE5NSwiZXhwIjoxNzQ2NzAyMzk1fQ.AItk9hacrfLwYS-vNg0inOUa4C5enMpZsq5k54QYG_0
 @project_id = 681b80e8e6e8c7fa84cd6f19
-@client_id = 681b70c6d4c30ad9cea221e5
+@client_id = 681c74b4a737bdd54a84a663
 
 ### GET project by ID
 GET http://localhost:3000/api/project/{{project_id}}
@@ -21,7 +21,7 @@ Authorization: Bearer {{token}}
 
 {
     "client_id" : "{{client_id}}",
-    "name" : "New Test Project",
+    "name" : "New Test Project 3",
     "description" : "Testing POST route",
     "deleted" : false
 }
